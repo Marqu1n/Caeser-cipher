@@ -28,7 +28,7 @@ alphabet = [
 ]
 
 direction = input(
-    'Type "encode" to encrypt, type "decode" to decrypt or "brute force" to brute force it:\n'
+    'Type "encode" to encrypt, type "decode" to decrypt with a key or "brute force" to brute force it:\n'
 )
 text = input("Type your message:\n").lower()
 if direction != "brute force":
