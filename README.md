@@ -16,3 +16,6 @@ Then, to avoid the out of index error, the new index is the modulus, if the numb
 After that, I assign to the variable the letter that's in the new index.
 
 The brute force function tries every possible with a finite loop that tries every number between 0 and the length of the alphabet.
+
+The allinone() fuction defines only the desired function (either the encrypt, decrypt or brute force functions),
+making the code more optimized.
