@@ -1,3 +1,4 @@
+
 alphabet = [
     "a",
     "b",
@@ -34,57 +35,53 @@ text = input("Type your message:\n").lower()
 if direction != "brute force":
     shift = int(input("Type the shift number:\n"))
 
-
-def encrypt(msg, num):
-    encrypted_msg = ""
-
-    for i in msg:
+def allinone():
+  if direction == "encode":
+    def encrypt(msg, num):
+      encrypted_msg = ""
+    
+      for i in msg:
         if i in alphabet:
-            new_index = alphabet.index(i) + num
-            new_index %= len(alphabet)
-            encrypted_msg += alphabet[new_index]
+          new_index = alphabet.index(i) + num
+          new_index %= len(alphabet)
+          encrypted_msg += alphabet[new_index]
         else:
-            encrypted_msg += i
-    print(f"this is the encrypted message: {encrypted_msg}")
+          encrypted_msg += i
+      print(f"this is the encrypted message: {encrypted_msg}")
+    encrypt(text, shift)
 
-
-def decrypt(msg, num):
-
-    decrypted_msg = ""
-    for i in msg:
+  elif direction == "decode":
+    def decrypt(msg, num):
+      decrypted_msg = ""
+      for i in msg:
         if i in alphabet:
-            new_index = alphabet.index(i) - num
-            new_index %= len(alphabet)
-            decrypted_msg += alphabet[new_index]
+          new_index = alphabet.index(i) - num
+          new_index %= len(alphabet)
+          decrypted_msg += alphabet[new_index]
         elif i not in alphabet:
-            decrypted_msg += i
-    print(f"this is the decrypted message: {decrypted_msg}")
+          decrypted_msg += i
+      print(f"this is the decrypted message: {decrypted_msg}")
+    decrypt(text, shift)
 
-
-def brute_force(msg):
-    messages = {}
-
-    j = 0
-    while j < len(alphabet):
+  elif direction == "brute force":
+    def brute_force(msg):
+      messages = {}
+      j = 0
+      while j < len(alphabet):
         encrypted_msg = ""
         for i in msg:
-            if i in alphabet:
-                new_index = alphabet.index(i) + j
-                new_index %= len(alphabet)
-                encrypted_msg += alphabet[new_index]
-                messages[j] = encrypted_msg
-            elif i not in alphabet:
-                encrypted_msg += i
+          if i in alphabet:
+            new_index = alphabet.index(i) + j
+            new_index %= len(alphabet)
+            encrypted_msg += alphabet[new_index]
+            messages[j] = encrypted_msg
+          elif i not in alphabet:
+            encrypted_msg += i
         j += 1
-
-    print(f"these are the possibilities:{messages}")
-
-
-if direction == "encode":
-    encrypt(text, shift)
-elif direction == "decode":
-    decrypt(text, shift)
-elif direction == "brute force":
+      print(f"these are the possibilities:{messages}")
     brute_force(text)
-else:
+
+  else:
     print(f"Invalid entry: {direction}")
+
+allinone()
